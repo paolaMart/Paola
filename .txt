@@ -1,0 +1,17 @@
+git branch //ver rama actual
+git branch -d <nombre rama> //eliminar
+git branch <nombre de rama> //crear rama
+git checkout <nombre de rama> //cambiar de rama
+git branch --list //listar las ramas
+git status //para ver los cambios
+git add . //agregar cambios
+git commit -m <Comentario> //agregar comentarios
+git merge <nombre de la rama
+git push <ruta> <nombre rama> //Subir al github
+git pull <nombre-remoto> //extraer del repositorio
+git revert <id_rama> volver a otro commit
+git reset --hard <codigo> volver a otro commit
+git tag version1.0 -m "version 1.0" -> agregar version
+git push --tags -> subir version
+git log --oneline //ver los commit
+git fetch //actualizar rama
