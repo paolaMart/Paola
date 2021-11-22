@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <style>
+    h1 { font-size: 260% }
+    
+    input{
+
+      border: 1px solid rgb(106, 100, 255);
+      
+      }
+    </style>
+
+  <ion-toolbar color="tertiary">
+    <ion-title>
+  RECARGA NORMAL
+    </ion-title>
+  
+
+    <ion-back-button slot="start"></ion-back-button>
+   
+   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+     
+  <article class="tile">
+
+      <form>
+      
+        <h1><b>{{numero_m}} </b><br> <b>C${{monto_m}}</b></h1> 
+      <div  >
+         <label>INGRESE EL NÚMERO:</label><BR>
+       <ion-item  lines="full">
+     <ion-input autofocus maxlength="8" minlength="8" required [(ngModel)]="numero_m"  name="n" style="border: 1px solid rgb(106, 100, 255)" type="tel"></ion-input>
+     </ion-item>
+         
+      <label>INGRESE EL MONTO:</label><BR>
+     <ion-item  lines="full">
+       <ion-input maxlength="4"  required [(ngModel)]="monto_m" name="mon"  style="border: 1px solid rgb(106, 100, 255)" type="tel"></ion-input>
+       </ion-item>
+      
+       <ion-button color="tertiary" type="submit"  routerLink="/home"  (click)="recargar(); limpiar(); " expand="block">ENVIAR</ion-button>
+    </div> </form>
+   <br> 
+  </article>
+
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title >CAMBIAR PIN</ion-title>
+   <ion-back-button slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content id="container">
+<br><br>
+
+ <br> <br>
+<ion-card >  <ion-card-header color="tertiary">
+  INGRESE EL NUEVO PIN:
+</ion-card-header>
+
+ <ion-card-content>
+
+
+  
+<br>
+<label>Escriba su nuevo codigo PIN:</label><br>
+
+  
+  <ion-input style="border: 1px solid rgb(106, 100, 255)" type="number" [(ngModel)]="cambia_pin" maxlength="4" value={{servicio.pin}}></ion-input>
+<ion-button  color="tertiary" fill="outline" routerLink="/home" (click)="cambiarpin()">CAMBIAR PIN</ion-button>
+</ion-card-content></ion-card>
+</ion-content>
+

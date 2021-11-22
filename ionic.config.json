@@ -1,0 +1,7 @@
+{
+  "name": "tigo_ventas",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

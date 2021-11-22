@@ -1,0 +1,86 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="tertiary">
+      <ion-title >TIGO-VENTAS</ion-title>
+     <ion-back-button slot="start"></ion-back-button>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content id="container">
+  <br><br>
+<div *ngIf="div=='0'">
+   <br> 
+  <ion-card style="border: 1px solid rgb(106, 100, 255)">  <ion-card-header >
+  </ion-card-header>
+
+   <ion-card-content>
+
+
+      <ion-button   expand="block" color="tertiary" routerLink="/tigo">RECARGA NORMAL
+        </ion-button>
+        
+      <br>
+      <ion-button    expand="block" color="danger"  routerLink="/paquetes">RECARGA ACTIVADA</ion-button>
+    
+     </ion-card-content>
+    </ion-card>
+    
+
+    
+  <ion-card style="border: 1px solid rgb(106, 100, 255)">  <ion-card-header color="tertiary">
+    <ion-card-subtitle>CONSULTAS TIGO:</ion-card-subtitle>
+  </ion-card-header>
+
+   <ion-card-content>
+  
+        <ion-button color="tertiary" fill="outline" (click)="c_saldo();limpiar()" expand="block">SALDO DISPONIBLE</ion-button>
+        <ion-button color="tertiary" fill="outline"  (click)="U_recarga();limpiar()" expand="block">ÚLTIMA RECARGA</ion-button>
+        <ion-button color="tertiary" fill="outline"  (click)="total_ventas();limpiar()" expand="block">TOTAL DE VENTAS</ion-button>
+        <ion-button color="tertiary" fill="outline"  (click)="reversion_rec();limpiar()" expand="block">REVERSIÓN DE RECARGA</ion-button>
+       <ion-button color="tertiary" fill="outline" expand="block" routerLink="/cambiapin">CAMBIAR PIN</ion-button>
+</ion-card-content>
+</ion-card>
+
+  <h5>PIN ACTUAL: {{servicio.pin}}</h5>
+  <h5>J&J&J-2021-V0.7<br>anielkapaola77@gmail.com</h5>
+  
+  
+</div>
+
+
+
+<div *ngIf="div=='1'" >
+  <br><br><br><br><br><br><br><br>
+  <ion-card>  <ion-card-header color="tertiary">
+    <ion-card-subtitle>CODIGO DE ACCESO:</ion-card-subtitle>
+  </ion-card-header>
+
+   <ion-card-content>
+ <br> <ion-input style="border: 1px solid rgb(106,100,255)" autofocus type="password" name="cod_acceso" [(ngModel)]="cod_acceso"></ion-input>
+        <ion-button color="tertiary" fill="outline" (click)="token()" expand="block">ACCEDER</ion-button>
+       
+</ion-card-content>
+</ion-card>
+
+</div>
+
+
+<div *ngIf="div=='2'" >
+  <br><br><br><br><br><br><br><br>
+  <ion-card>  <ion-card-header color="tertiary">
+    <ion-card-subtitle>AHORA INGRESE SU CODIGO PIN:</ion-card-subtitle>
+  </ion-card-header>
+
+   <ion-card-content>
+ <br> <ion-input type="number"  style="border: 1px solid rgb(106,100,255)" autofocus  name="pin_input" [(ngModel)]="pin_input" maxlength="4"></ion-input>
+        <ion-button color="tertiary" fill="outline" (click)="pin_ing()" expand="block">GUARDAR</ion-button>
+       
+</ion-card-content>
+</ion-card>
+
+</div>
+
+
+
+</ion-content>
+
