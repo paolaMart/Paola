@@ -1,32 +1,42 @@
 #container {
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
+  width:100%;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.titulo-accion{
+  font-size: 1em;
+  font-weight: bold;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+.target {
+  position: relative;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #2871FF;
+  padding: 5px;
+  border: 2px solid #fff;
 
-  color: #8c8c8c;
-
-  margin: 0;
+  .info{
+    h5{
+      width:100%;
+      text-align:left;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #002e6a;
+    }
+    p{
+      width:100%;
+      text-align:left;
+      font-size: 0.9rem;
+    }
+  }
+  
 }
 
-#container a {
-  text-decoration: none;
-}
-
-img{
- 
-  height: 20%;
+.caja{
+  box-sizing: border-box;
+  padding: 3px;
 }

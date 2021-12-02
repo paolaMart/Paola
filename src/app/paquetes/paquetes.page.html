@@ -1,29 +1,51 @@
 <ion-header [translucent]="true">
-  
-  <ion-toolbar color ="tertiary">
-    <ion-title>RECARGA ACTIVADA TIGO</ion-title>
-     <ion-back-button slot="start"></ion-back-button>
-   
+  <ion-toolbar color ="tigo">
+    <ion-title>Recarga Activada Tigo</ion-title>
+     <ion-back-button slot="start" defaultHref="/"></ion-back-button>
   </ion-toolbar>
 </ion-header>
-<style> h1{
-  color: black;
-}
 
-</style>
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" color="subTigo">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <span class="show-number">{{numero}}</span>
+        <span class="show-paq">{{paqTipo}}</span>
+        <span class="show-des">{{paqDesc}}</span>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Digite el numero telefonico</ion-label>
+          <ion-input autofocus clearInput maxlength="8" minlength="8" type="tel" [(ngModel)]="numero" required></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Tipo de paquete</ion-label>
+          <ion-select [(ngModel)]="selectedPaq" (ionChange)="paqueteSeleccionado()" mode="ios" okText="Agregar" cancelText="Cancelar">
+            <ion-select-option *ngFor="let paq of paquetes" [value]="paq">{{paq.tipo}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12" *ngIf="estado">
+        <ion-item>
+          <ion-label position="floating">Descripción del paquete</ion-label>
+          <ion-select [(ngModel)]="selectedDes" (ionChange)="descSeleccionado()" mode="ios" okText="Agregar" cancelText="Cancelar">
+            <ion-select-option *ngFor="let desPaq of paqActual; let i=index" value="{{i}}">{{desPaq}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      
+      <ion-col>
+        <ion-button color="lightTigo" (click)="realizarRecarga();" expand="full">Recargar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   
-     
-  <article class="tile">
-
-    
-       <h1 style="font-size:270%"><b>{{numero}}</b></h1>
-
-    
-    <h1><b>{{p}}</b></h1>
-
-   
-          <label>ESCRIBIR NÚMERO TIGO:</label><br>
+  <!-- <article class="tile">       -->
+        <!-- <label>ESCRIBIR NÚMERO TIGO:</label><br>
         <ion-item  lines="full">
            <ion-input  style="width:100%;font-size:22px; border: 1px solid rgb(106, 100, 255)" maxlength="8" minlength="8" name="nnn" type="tel" [(ngModel)]="numero"  required ></ion-input>
         </ion-item>
@@ -50,11 +72,18 @@
          </select>
         
          
-         <ion-button color="tertiary" type="submit" style="width: 100%;"    expand="block" (click)="enviarpaq();limpiar()">ENVIAR</ion-button>
+         <ion-button color="tertiary" type="submit" style="width: 100%;"    expand="block" (click)="enviarpaq();limpiar()">ENVIAR</ion-button> -->
            
-         
+<!--          
         </div></ion-item>
       </article>
-   <h6>Codigo:<br> {{cod}}numero*{{ServiciosService.pin}}#</h6>
-    
-    </ion-content>
+   <h6>Codigo:<br> {{cod}}numero*{{pin}}#</h6> -->
+</ion-content>
+
+<ion-footer class="fixed-bottom ion-no-border">
+  <ion-toolbar color="tigo">
+    <h5 class="text-center">
+      <span>@PaolaHack</span>
+    </h5>
+  </ion-toolbar>
+</ion-footer>

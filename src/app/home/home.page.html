@@ -1,56 +1,119 @@
-<ion-header [translucent]="true">
-    <ion-toolbar color="tertiary">
-      <ion-title >TIGO-VENTAS</ion-title>
-     <ion-back-button slot="start"></ion-back-button>
-    </ion-toolbar>
-</ion-header>
+<ion-content id="container" [color]="color">
+  <!-- pagina de acceso -->
+  <div class="d-flex flex-column justify-content-center align-items-center border h-100 position-relative"
+    *ngIf="permiso === 'login'">
+    <img src="assets/imagenes/logo.png" class="w-50 img-fluid">
+    <section class="mt-3">
+      <h1 class="h4">Bienvenid@ a mi tiGo</h1>
+      <article>
+        <p>
+          Gestiona tus recargas
+        </p>
+      </article>
+
+      <ion-button (click)="accesoApp()" color="cyan" shape="round" expand="block" size="large" class="mt-3">
+        <ion-icon slot="start" name="phone-portrait"></ion-icon>
+        Acceder
+      </ion-button>
+    </section>
+
+    <ion-footer class="fixed-bottom ion-no-border" color="tigo">
+      <h5>
+        <span>@PaolaHack</span>
+      </h5>
+    </ion-footer>
+  </div>
 
 
-<ion-content id="container">
-  <br><br>
-<div *ngIf="div=='0'">
-   <br> 
-  <ion-card style="border: 1px solid rgb(106, 100, 255)">  <ion-card-header >
-  </ion-card-header>
+  <div *ngIf="permiso ==='panel'">
+    <ion-header>
+      <ion-toolbar color="tigo">
+        <ion-thumbnail slot="start" class="d-flex justify-content-center align-items-center m-1">
+          <ion-img src="assets/imagenes/logo.png" class="img-fluid"></ion-img>
+        </ion-thumbnail>
+        <ion-title>
+          <span>Hola, {{name}}</span>
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
 
-   <ion-card-content>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" class="ion-no-padding ion-no-margin">
+          <ion-card routerLink="/tigo" color="tigo">
+            <ion-card-content class="d-flex flex-column justify-content-center align-items-center">
+              <ion-icon name="keypad" style="font-size:50px"></ion-icon>
+              <span>Recargas Normales</span>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="6" class="ion-no-padding ion-no-margin">
+          <ion-card routerLink="/paquetes" color="warning">
+            <ion-card-content class="d-flex flex-column justify-content-center align-items-center">
+              <ion-icon name="globe" style="font-size:50px"></ion-icon>
+              <span>Recargas Activadas</span>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
 
-      <ion-button   expand="block" color="tertiary" routerLink="/tigo">RECARGA NORMAL
+    
+    
+    <ion-grid class="ion-no-padding ion-no-margin">
+      <ion-row class="ion-no-padding ion-no-margin">
+        <ion-col size="12" class="ion-no-padding ion-no-margin">
+            <h4 class="titulo-accion">CONSULTAS TIGO</h4>
+        </ion-col>
+     </ion-row>
+
+      <ion-row>
+        <ion-col *ngFor="let el of dataAccion" (click)="methodCall(el.method)" size="6" size-sm="6" size-md="4" class="text-center caja">
+          <div class="target m-auto">
+            <div class="info">
+              <h5 class="">{{el.name}}</h5>
+              <p class="">{{el.description || ""}}</p>
+            </div>
+            <ion-icon [name]="el.icon" style="font-size: 30px"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>   
+    </ion-grid>
+
+    <!-- <ion-card>
+  
+      <ion-card-content>
+
+        <ion-button color="tertiary" fill="outline" (click)="c_saldo();limpiar()" expand="block">SALDO DISPONIBLE
         </ion-button>
-        
-      <br>
-      <ion-button    expand="block" color="danger"  routerLink="/paquetes">RECARGA ACTIVADA</ion-button>
-    
-     </ion-card-content>
-    </ion-card>
-    
-
-    
-  <ion-card style="border: 1px solid rgb(106, 100, 255)">  <ion-card-header color="tertiary">
-    <ion-card-subtitle>CONSULTAS TIGO:</ion-card-subtitle>
-  </ion-card-header>
-
-   <ion-card-content>
-  
-        <ion-button color="tertiary" fill="outline" (click)="c_saldo();limpiar()" expand="block">SALDO DISPONIBLE</ion-button>
-        <ion-button color="tertiary" fill="outline"  (click)="U_recarga();limpiar()" expand="block">ÚLTIMA RECARGA</ion-button>
-        <ion-button color="tertiary" fill="outline"  (click)="total_ventas();limpiar()" expand="block">TOTAL DE VENTAS</ion-button>
-        <ion-button color="tertiary" fill="outline"  (click)="reversion_rec();limpiar()" expand="block">REVERSIÓN DE RECARGA</ion-button>
-       <ion-button color="tertiary" fill="outline" expand="block" routerLink="/cambiapin">CAMBIAR PIN</ion-button>
-</ion-card-content>
-</ion-card>
-
-  <h5>PIN ACTUAL: {{servicio.pin}}</h5>
-  <h5>J&J&J-2021-V0.7<br>anielkapaola77@gmail.com</h5>
-  
-  
-</div>
+        <ion-button color="tertiary" fill="outline" (click)="U_recarga();limpiar()" expand="block">ÚLTIMA RECARGA
+        </ion-button>
+        <ion-button color="tertiary" fill="outline" (click)="total_ventas();limpiar()" expand="block">TOTAL DE VENTAS
+        </ion-button>
+        <ion-button color="tertiary" fill="outline" (click)="reversion_rec();limpiar()" expand="block">REVERSIÓN DE
+          RECARGA</ion-button>
+        <ion-button color="tertiary" fill="outline" expand="block" routerLink="/cambiapin">CAMBIAR PIN</ion-button>
+      </ion-card-content>
+    </ion-card> -->
 
 
+    <ion-footer class="fixed-bottom ion-no-border">
+      <ion-toolbar color="tigo">
+        <h5>
+          <span>@PaolaHack</span>
+        </h5>
+      </ion-toolbar>
+    </ion-footer>
+  </div>
 
+
+  <!--
 <div *ngIf="div=='1'" >
   <br><br><br><br><br><br><br><br>
+
   <ion-card>  <ion-card-header color="tertiary">
     <ion-card-subtitle>CODIGO DE ACCESO:</ion-card-subtitle>
   </ion-card-header>
@@ -78,9 +141,8 @@
 </ion-card-content>
 </ion-card>
 
-</div>
+</div> -->
 
 
 
 </ion-content>
-

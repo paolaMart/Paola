@@ -11,12 +11,16 @@ import { AlertController } from '@ionic/angular';
 export class TigoPage implements OnInit {
 
   //recarga electronica
-  
+    private pin: string;
     numero_m: String;
     monto_m: String;
     result: String ="";
     
-  constructor(private call: CallNumber, private servicio: ServiciosService, public alertController: AlertController) { }
+  constructor(private call: CallNumber, private servicio: ServiciosService, public alertController: AlertController) {
+    if(localStorage.getItem('dataUser')) {
+      this.pin = JSON.parse(localStorage.getItem('dataUser')).pin;
+    }
+   }
   
     ngOnInit() { 
       
@@ -32,7 +36,7 @@ export class TigoPage implements OnInit {
    {    
      if(this.monto_m!=null&&this.numero_m!=null){
   try{                //*108*             MONTO                 NUMERO              PIN #
-    this.result += '*108*'  + this.monto_m + '*' + this.numero_m + "*" + this.servicio.pin +'#';
+    this.result += '*108*'  + this.monto_m + '*' + this.numero_m + "*" + this.pin +'#';
     console.log(this.result);  
     await this.call.callNumber(String(this.result), true);   
   }
