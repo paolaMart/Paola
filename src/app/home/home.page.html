@@ -24,7 +24,6 @@
     </ion-footer>
   </div>
 
-
   <div *ngIf="permiso ==='panel'">
     <ion-header>
       <ion-toolbar color="tigo">
@@ -36,7 +35,6 @@
         </ion-title>
       </ion-toolbar>
     </ion-header>
-
 
     <ion-grid>
       <ion-row>
@@ -59,9 +57,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-
-
-    
     
     <ion-grid class="ion-no-padding ion-no-margin">
       <ion-row class="ion-no-padding ion-no-margin">
@@ -83,23 +78,6 @@
       </ion-row>   
     </ion-grid>
 
-    <!-- <ion-card>
-  
-      <ion-card-content>
-
-        <ion-button color="tertiary" fill="outline" (click)="c_saldo();limpiar()" expand="block">SALDO DISPONIBLE
-        </ion-button>
-        <ion-button color="tertiary" fill="outline" (click)="U_recarga();limpiar()" expand="block">ÚLTIMA RECARGA
-        </ion-button>
-        <ion-button color="tertiary" fill="outline" (click)="total_ventas();limpiar()" expand="block">TOTAL DE VENTAS
-        </ion-button>
-        <ion-button color="tertiary" fill="outline" (click)="reversion_rec();limpiar()" expand="block">REVERSIÓN DE
-          RECARGA</ion-button>
-        <ion-button color="tertiary" fill="outline" expand="block" routerLink="/cambiapin">CAMBIAR PIN</ion-button>
-      </ion-card-content>
-    </ion-card> -->
-
-
     <ion-footer class="fixed-bottom ion-no-border">
       <ion-toolbar color="tigo">
         <h5>
@@ -108,41 +86,5 @@
       </ion-toolbar>
     </ion-footer>
   </div>
-
-
-  <!--
-<div *ngIf="div=='1'" >
-  <br><br><br><br><br><br><br><br>
-
-  <ion-card>  <ion-card-header color="tertiary">
-    <ion-card-subtitle>CODIGO DE ACCESO:</ion-card-subtitle>
-  </ion-card-header>
-
-   <ion-card-content>
- <br> <ion-input style="border: 1px solid rgb(106,100,255)" autofocus type="password" name="cod_acceso" [(ngModel)]="cod_acceso"></ion-input>
-        <ion-button color="tertiary" fill="outline" (click)="token()" expand="block">ACCEDER</ion-button>
-       
-</ion-card-content>
-</ion-card>
-
-</div>
-
-
-<div *ngIf="div=='2'" >
-  <br><br><br><br><br><br><br><br>
-  <ion-card>  <ion-card-header color="tertiary">
-    <ion-card-subtitle>AHORA INGRESE SU CODIGO PIN:</ion-card-subtitle>
-  </ion-card-header>
-
-   <ion-card-content>
- <br> <ion-input type="number"  style="border: 1px solid rgb(106,100,255)" autofocus  name="pin_input" [(ngModel)]="pin_input" maxlength="4"></ion-input>
-        <ion-button color="tertiary" fill="outline" (click)="pin_ing()" expand="block">GUARDAR</ion-button>
-       
-</ion-card-content>
-</ion-card>
-
-</div> -->
-
-
 
 </ion-content>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CallNumber } from '@ionic-native/call-number/ngx';
-import { ServiciosService } from '../servicios.service';
 
 import { AlertController } from '@ionic/angular';
 @Component({
@@ -9,54 +8,46 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./tigo.page.scss'],
 })
 export class TigoPage implements OnInit {
+  private color: string;
+  private telefono: string;
+  private monto: string;
+  private pin: string;
+  private result= '';
 
-  //recarga electronica
-    private pin: string;
-    numero_m: String;
-    monto_m: String;
-    result: String ="";
-    
-  constructor(private call: CallNumber, private servicio: ServiciosService, public alertController: AlertController) {
+  constructor(private call: CallNumber, public alertController: AlertController) {
+    this.color = 'subTigo';
     if(localStorage.getItem('dataUser')) {
       this.pin = JSON.parse(localStorage.getItem('dataUser')).pin;
     }
    }
-  
-    ngOnInit() { 
-      
-    }
-  
-  
+
+  ngOnInit() {}
+
   limpiar(){
-    this.monto_m=null;
-    this.numero_m=null;
-    this.result ="";}
-  
+    this.telefono = '';
+    this.monto = '';
+    this.result = '';
+  }
+
    async recargar(): Promise<any>
-   {    
-     if(this.monto_m!=null&&this.numero_m!=null){
-  try{                //*108*             MONTO                 NUMERO              PIN #
-    this.result += '*108*'  + this.monto_m + '*' + this.numero_m + "*" + this.pin +'#';
-    console.log(this.result);  
-    await this.call.callNumber(String(this.result), true);   
+   {
+     if(this.telefono && this.monto){
+      try{
+        this.result = '*108*' + this.monto + '*' + this.telefono + '*' + this.pin +'#';
+        await this.call.callNumber(String(this.result), true);
+      }
+      catch(e){ console.error(e); }
+    }else{
+      const campoRequerido = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Campos Requerido',
+        message: 'Porfa llene los campos requeridos',
+        buttons: ['OK']
+      });
+      await campoRequerido.present();
+    }
+
+    this.limpiar();
   }
-  catch(e){
-  console.error(e);
-  }   
-   
-  }else{
-    
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',      
-      message: 'LLENE LOS CAMPOS',
-      buttons: ['OK']
-    });
-    await alert.present();
-  this.limpiar();
 
-  }}
-
-
-  
-  }
-  
+}

@@ -1,9 +1,10 @@
-import { AlertController, Platform } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { AppComponent } from './../app.component';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,6 @@ export class HomePage implements OnInit {
   private acceso: string;
   private pin: string;
   private result: string;
-  private subscribe: any;
   private name: string;
   private color: string;
   private dataAccion = [
@@ -47,18 +47,22 @@ export class HomePage implements OnInit {
 
 
   constructor(
-    public platform: Platform,
     public alertController: AlertController,
     public appComponent: AppComponent,
     public  formBuilder: FormBuilder,
     private call: CallNumber,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private platform: Platform
     ){
 
     this.acceso = '123';
 
-    if(!localStorage.getItem('permiso')) { localStorage.setItem('permiso', 'login'); }
-    else { this.permiso = localStorage.getItem('permiso'); }
+    if(!localStorage.getItem('permiso')) {
+      localStorage.setItem('permiso', 'login');
+      this.permiso = localStorage.getItem('permiso');
+    }else{
+      this.permiso = localStorage.getItem('permiso');
+    }
 
     if(localStorage.getItem('dataUser')) {
       this.name = JSON.parse(localStorage.getItem('dataUser')).usuario;
@@ -67,13 +71,17 @@ export class HomePage implements OnInit {
 
     this.setColor();
 
-    // this.subscribe = this.platform.backButton.subscribeWithPriority(666666,()=>{
-    //   if(this.constructor.name === 'HomePage'){
-    //       navigator["app"].exitApp();
-    //   }
-    // });
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      if(this.constructor.name === 'HomePage'){
+        navigator['app'].exitApp();
+      }
+    });
+
   }
 
+  ngOnInit() {
+  }
+  
   setColor(){
     if(this.permiso === 'login'){ this.color = 'tigo'; }
     else if(this.permiso === 'panel'){ this.color = 'subTigo'; }
@@ -81,13 +89,19 @@ export class HomePage implements OnInit {
 
   limpiar(){ this.result = ''; }
 
-  codeRecarga(pos){
-    return [
-      '*109*1*',
-      '*109*2*',
-      '*109*3*',
-      '*109*5*',
-    ][pos] + this.pin + '#';
+  async codeRecarga(pos): Promise<any>{
+    try {
+      this.result = [
+        '*109*1*',
+        '*109*2*',
+        '*109*3*',
+        '*109*5*',
+      ][pos] + this.pin + '#';
+
+      await this.call.callNumber(String(this.result), true);
+      this.limpiar();
+    }
+    catch(e){ console.error(e); }
   }
 
   methodCall(evento){
@@ -108,43 +122,23 @@ export class HomePage implements OnInit {
   }
 
   //SALDO DISPONIBLE
-  async saldoDisponible(): Promise<any>{
-    try{
-      this.result += this.codeRecarga(0);
-      await this.call.callNumber(String(this.result), true);
-      this.limpiar();
-    }
-    catch(e){ console.error(e); }
+  saldoDisponible(){
+    this.codeRecarga(0);
   }
 
   //ULTIMA RECARGA
-  async ultimaRecarga(): Promise<any>{
-    try{
-      this.result += this.codeRecarga(1);
-      await this.call.callNumber(String(this.result), true);
-      this.limpiar();
-    }
-    catch(e) { console.error(e); }
+  ultimaRecarga(){
+    this.codeRecarga(1);
   }
 
   //TOTAL DE VENTAS
-  async totalDeVentas(): Promise<any>{
-    try{
-      this.result += this.codeRecarga(2);
-      await this.call.callNumber(String(this.result), true);
-      this.limpiar();
-    }
-    catch(e){ console.error(e); }
+  totalDeVentas(){
+    this.codeRecarga(2);
   }
 
   //REVERSION DE RECARGA
-  async reversionDeRecarga(): Promise<any>{
-    try{
-      this.result += this.codeRecarga(3);
-      await this.call.callNumber(String(this.result), true);
-      this.limpiar();
-    }
-    catch(e) { console.error(e); }
+  reversionDeRecarga(){
+    this.codeRecarga(3);
   }
 
   async accesoApp() {
@@ -199,7 +193,6 @@ export class HomePage implements OnInit {
                 this.pin = JSON.parse(localStorage.getItem('dataUser')).pin;
               }
               this.name = JSON.parse(localStorage.getItem('dataUser')).usuario;
-              console.log(this.name);
             }
           }
         }
@@ -207,8 +200,5 @@ export class HomePage implements OnInit {
     });
 
     await alert.present();
-  }
-
-  ngOnInit() {
   }
 }

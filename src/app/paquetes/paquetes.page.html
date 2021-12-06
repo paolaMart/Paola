@@ -43,41 +43,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  
-  <!-- <article class="tile">       -->
-        <!-- <label>ESCRIBIR NÚMERO TIGO:</label><br>
-        <ion-item  lines="full">
-           <ion-input  style="width:100%;font-size:22px; border: 1px solid rgb(106, 100, 255)" maxlength="8" minlength="8" name="nnn" type="tel" [(ngModel)]="numero"  required ></ion-input>
-        </ion-item>
-            
-        <ion-item  lines="full">
-          <ion-label position="floating">SELECCIONE EL TIPO:</ion-label><br>
-                   
-          <select style="width:100%;border: 1px solid rgb(106, 100, 255);color:#000000;font-size:28px;"  name="selel"  [(ngModel)]="select" required (change)="seleccionatipo($event.target.value)" >
-              
-                  <option value="1">MINUTOS</option> 
-                  <option value="2">MENSAJES</option> 
-                  <option value="3">INTERNET</option> 
-                  <option value="4">GAMER TIGO</option> 
-                  <option value="5">PLUS TIGO</option> 
-                  
-           </select></ion-item>
-                     
-           <ion-item  lines="full">
-           <div *ngIf="paquet.length >= 1" >
-            <ion-label position="floating">SELECCIONE EL PAQUETE:</ion-label><br>
-            <select style="width:100%;border: 1px solid rgb(106, 100, 255);color:#000000;font-size:28px;" name="se2" [(ngModel)]="select2" onchange="this.style.width=200"  required (change)="seleccionapaq($event.target.value)">
-            <option style="width: 40px;" *ngFor="let p of paquet; let indice=index" value="{{indice+1}}"  >{{p}}</option>
-               
-         </select>
-        
-         
-         <ion-button color="tertiary" type="submit" style="width: 100%;"    expand="block" (click)="enviarpaq();limpiar()">ENVIAR</ion-button> -->
-           
-<!--          
-        </div></ion-item>
-      </article>
-   <h6>Codigo:<br> {{cod}}numero*{{pin}}#</h6> -->
 </ion-content>
 
 <ion-footer class="fixed-bottom ion-no-border">
