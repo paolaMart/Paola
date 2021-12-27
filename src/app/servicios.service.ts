@@ -6,23 +6,23 @@ import { AlertController } from '@ionic/angular';
   providedIn: 'root'
 })
 export class ServiciosService {
-  pin: string = null;
+  public theme;
+  constructor(public alertController: AlertController) {}
 
-  constructor(public alertController: AlertController) {
-    if(localStorage.getItem('dataUser')){
-      console.log(JSON.parse(localStorage.getItem('dataUser')).pin);
-      this.pin = JSON.parse(localStorage.getItem('dataUser')).pin;
-    }else{
-      this.pin = null;
+  setColor(){
+    switch(localStorage.getItem('theme')){
+      case 'tigo':
+        this.theme = {head: localStorage.getItem('theme'), col: 'subTigo'};
+        break;
+      case 'danger':
+        this.theme = {head: localStorage.getItem('theme'), col: 'tigo'};
+        break;
+      case 'success':
+        this.theme = {head: localStorage.getItem('theme'), col: 'cafe'};
+        break;
+      case 'warning':
+        this.theme = {head: localStorage.getItem('theme'), col: 'lightBlue'};
+        break;
     }
   }
-
-async Alert() {
-  const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      message: 'COMPLETE LOS CAMPOS CORRECTAMENTE',
-      buttons: ['OK']
-    });
-    await alert.present();
-  };
 }

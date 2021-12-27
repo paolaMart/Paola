@@ -26,13 +26,18 @@
 
   <div *ngIf="permiso ==='panel'">
     <ion-header>
-      <ion-toolbar color="tigo">
-        <ion-thumbnail slot="start" class="d-flex justify-content-center align-items-center m-1">
+      <ion-toolbar [color]="header">
+        <ion-thumbnail slot="start" class="d-flex justify-content-center align-items-center m-1" [routerLink]="['/']">
           <ion-img src="assets/imagenes/logo.png" class="img-fluid"></ion-img>
         </ion-thumbnail>
         <ion-title>
           <span>Hola, {{name}}</span>
         </ion-title>
+        <ion-buttons slot="end">
+          <ion-button shape="round" expand="block" size="large" [routerLink]="['/config']">
+            <ion-icon slot="icon-only" name="build"></ion-icon>
+          </ion-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
 
@@ -42,7 +47,7 @@
           <ion-card routerLink="/tigo" color="tigo">
             <ion-card-content class="d-flex flex-column justify-content-center align-items-center">
               <ion-icon name="keypad" style="font-size:50px"></ion-icon>
-              <span>Recargas Normales</span>
+              <span class="my-2">Recarga Normales</span>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -51,7 +56,7 @@
           <ion-card routerLink="/paquetes" color="warning">
             <ion-card-content class="d-flex flex-column justify-content-center align-items-center">
               <ion-icon name="globe" style="font-size:50px"></ion-icon>
-              <span>Recargas Activadas</span>
+              <span class="my-2">Recarga Activada</span>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -79,7 +84,7 @@
     </ion-grid>
 
     <ion-footer class="fixed-bottom ion-no-border">
-      <ion-toolbar color="tigo">
+      <ion-toolbar [color]="header">
         <h5>
           <span>@PaolaHack</span>
         </h5>

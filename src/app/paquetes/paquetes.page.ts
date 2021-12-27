@@ -2,6 +2,7 @@ import { AlertController } from '@ionic/angular';
 
 import { Component, OnInit } from '@angular/core';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { ServiciosService } from '../servicios.service';
 
 @Component({
   selector: 'app-paquetes',
@@ -9,6 +10,8 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
   styleUrls: ['./paquetes.page.scss'],
 })
 export class PaquetesPage implements OnInit {
+  private color: string;
+  private header: string;
   private pin: string;
   private numero: string;
   private paqTipo: string;
@@ -47,8 +50,15 @@ export class PaquetesPage implements OnInit {
           'C$300-9GB + 50 MIN MULTIUSO + LLAMAD ILIM + REDES 15D']
   };
 
-  constructor(public alertController: AlertController , private call: CallNumber) {
+  constructor(
+    public alertController: AlertController ,
+    private call: CallNumber,
+    private servicio: ServiciosService
+  ) {
       this.pin = JSON.parse(localStorage.getItem('dataUser')).pin;
+      this.servicio.setColor();
+      this.header = this.servicio.theme.head;
+      this.color = this.servicio.theme.col;
   }
 
   ngOnInit() {}

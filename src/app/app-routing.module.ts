@@ -20,9 +20,19 @@ const routes: Routes = [
     loadChildren: () => import('./paquetes/paquetes.module').then( m => m.PaquetesPageModule)
   },
   {
-    path: 'cambiapin',
-    loadChildren: () => import('./cambiapin/cambiapin.module').then( m => m.CambiapinPageModule)
+    path: 'config',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./config/config.module').then( m => m.ConfigPageModule)
+      },
+      {
+        path: 'pin',
+        loadChildren: () => import('./config/pin/pin.module').then( m => m.PinPageModule)
+      },
+    ]
   },
+
 ];
 
 @NgModule({

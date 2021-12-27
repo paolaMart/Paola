@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar [color]="header">
+    <ion-back-button slot="start" defaultHref="/config"></ion-back-button>
+  
+    <ion-title>Cambiar tema</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [color]="color">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <h3>Seleccione</h3>
+      </ion-col> 
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="3">
+        <ion-button expand="full" size="large" class="m-1" color="tigo" (click)="setTheme('tigo')">
+          {{check.tigo}}
+        </ion-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button expand="full" size="large" class="m-1" color="danger" (click)="setTheme('danger')">
+          {{check.primary}}
+        </ion-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button expand="full" size="large" class="m-1" color="success" (click)="setTheme('success')">
+          {{check.success}}
+        </ion-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button expand="full" size="large" class="m-1" color="warning" (click)="setTheme('warning')">
+          {{check.warning}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="fixed-bottom ion-no-border">
+  <ion-toolbar [color]="header">
+    <h5 class="text-center">
+      <span>@PaolaHack</span>
+    </h5>
+  </ion-toolbar>
+</ion-footer>

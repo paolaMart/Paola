@@ -1,11 +1,11 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color ="tigo">
+  <ion-toolbar [color]="header">
     <ion-title>Recarga Activada Tigo</ion-title>
      <ion-back-button slot="start" defaultHref="/"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" color="subTigo">
+<ion-content [fullscreen]="true" [color]="color">
 
   <ion-grid>
     <ion-row>
@@ -46,7 +46,7 @@
 </ion-content>
 
 <ion-footer class="fixed-bottom ion-no-border">
-  <ion-toolbar color="tigo">
+  <ion-toolbar [color]="header">
     <h5 class="text-center">
       <span>@PaolaHack</span>
     </h5>

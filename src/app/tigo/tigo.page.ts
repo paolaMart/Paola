@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 
 import { AlertController } from '@ionic/angular';
+import { ServiciosService } from '../servicios.service';
 @Component({
   selector: 'app-tigo',
   templateUrl: './tigo.page.html',
@@ -12,10 +13,17 @@ export class TigoPage implements OnInit {
   private telefono: string;
   private monto: string;
   private pin: string;
+  private header: string;
   private result= '';
 
-  constructor(private call: CallNumber, public alertController: AlertController) {
-    this.color = 'subTigo';
+  constructor(
+    private call: CallNumber,
+    public alertController: AlertController,
+    private servicio: ServiciosService,
+  ) {
+    this.servicio.setColor();
+    this.header = this.servicio.theme.head;
+    this.color = this.servicio.theme.col;
     if(localStorage.getItem('dataUser')) {
       this.pin = JSON.parse(localStorage.getItem('dataUser')).pin;
     }

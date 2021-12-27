@@ -106,6 +106,60 @@
   --ion-color-lightTigo-contrast-rgb: 255,255,255;
   --ion-color-lightTigo-shade: #2363e0;
   --ion-color-lightTigo-tint: #3e7fff;
+
+  //oscuro
+  --ion-color-oscuro: #000000;
+	--ion-color-oscuro-rgb: 0,0,0;
+	--ion-color-oscuro-contrast: #ffffff;
+	--ion-color-oscuro-contrast-rgb: 255,255,255;
+	--ion-color-oscuro-shade: #000000;
+	--ion-color-oscuro-tint: #1a1a1a;
+
+  //celeste claro
+  --ion-color-lightBlue: #3c89aa;
+	--ion-color-lightBlue-rgb: 60,137,170;
+	--ion-color-lightBlue-contrast: #ffffff;
+	--ion-color-lightBlue-contrast-rgb: 255,255,255;
+	--ion-color-lightBlue-shade: #357996;
+	--ion-color-lightBlue-tint: #5095b3;
+
+  //cafe
+  --ion-color-cafe: #85380f;
+	--ion-color-cafe-rgb: 133,56,15;
+	--ion-color-cafe-contrast: #ffffff;
+	--ion-color-cafe-contrast-rgb: 255,255,255;
+	--ion-color-cafe-shade: #75310d;
+	--ion-color-cafe-tint: #914c27;
+}
+
+// cafe
+.ion-color-cafe{
+  --ion-color-base: var(--ion-color-cafe) !important;
+  --ion-color-base-rgb: var(--ion-color-cafe-rgb) !important;
+  --ion-color-contrast: var(--ion-color-cafe-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-cafe-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-cafe-shade) !important;
+  --ion-color-tint: var(--ion-color-cafe-tint) !important;
+}
+
+// lightBlue
+.ion-color-lightBlue{
+  --ion-color-base: var(--ion-color-lightBlue) !important;
+  --ion-color-base-rgb: var(--ion-color-lightBlue-rgb) !important;
+  --ion-color-contrast: var(--ion-color-lightBlue-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-lightBlue-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-lightBlue-shade) !important;
+  --ion-color-tint: var(--ion-color-lightBlue-tint) !important;
+}
+
+// lightOscuro
+.ion-color-oscuro{
+  --ion-color-base: var(--ion-color-oscuro) !important;
+  --ion-color-base-rgb: var(--ion-color-oscuro-rgb) !important;
+  --ion-color-contrast: var(--ion-color-oscuro-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-oscuro-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-oscuro-shade) !important;
+  --ion-color-tint: var(--ion-color-oscuro-tint) !important;
 }
 
 // lightTigo

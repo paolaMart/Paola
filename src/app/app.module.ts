@@ -20,10 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [FormsModule,  ReactiveFormsModule , BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
   //  HomePage,
-    CallNumber, 
+    CallNumber,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  }
-   
-   
  ],
  bootstrap: [AppComponent],
 })

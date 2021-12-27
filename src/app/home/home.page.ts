@@ -1,10 +1,13 @@
 import { AlertController } from '@ionic/angular';
 import { AppComponent } from './../app.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Platform } from '@ionic/angular';
+import { ServiciosService } from '../servicios.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +20,10 @@ export class HomePage implements OnInit {
   private pin: string;
   private result: string;
   private name: string;
+  private globalColor: string;
   private color: string;
+  private header: string;
+  private ser;
   private dataAccion = [
     {
       name: 'SALDO DISPONIBLE',
@@ -52,11 +58,14 @@ export class HomePage implements OnInit {
     public  formBuilder: FormBuilder,
     private call: CallNumber,
     private activatedRoute: ActivatedRoute,
-    private platform: Platform
+    private platform: Platform,
+    private servicio: ServiciosService,
+    private router: Router,
+    private location: Location
     ){
-
+    this.ser = this.servicio;
     this.acceso = '123';
-
+    //login
     if(!localStorage.getItem('permiso')) {
       localStorage.setItem('permiso', 'login');
       this.permiso = localStorage.getItem('permiso');
@@ -64,27 +73,45 @@ export class HomePage implements OnInit {
       this.permiso = localStorage.getItem('permiso');
     }
 
+    //datos de la sesion
     if(localStorage.getItem('dataUser')) {
       this.name = JSON.parse(localStorage.getItem('dataUser')).usuario;
       this.pin = JSON.parse(localStorage.getItem('dataUser')).pin;
     }
+    //color
+    if(!localStorage.getItem('theme')){
+      localStorage.setItem('theme', 'tigo');
+      this.globalColor = JSON.parse(localStorage.getItem('color'));
+    }else{
+      this.servicio.setColor();
+      this.header = this.servicio.theme.head;
+      this.color = this.servicio.theme.col;
+    }
 
-    this.setColor();
-
-    this.platform.backButton.subscribeWithPriority(10, () => {
-      if(this.constructor.name === 'HomePage'){
+    this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+      if (this.location.isCurrentPathEqualTo('/home')) {
         navigator['app'].exitApp();
+        processNextHandler();
       }
     });
-
   }
 
   ngOnInit() {
   }
-  
+
+  ionViewDidEnter(){
+    this.ser.setColor();
+    this.header = this.ser.theme.head;
+    this.color = this.ser.theme.col;
+  }
+
   setColor(){
     if(this.permiso === 'login'){ this.color = 'tigo'; }
-    else if(this.permiso === 'panel'){ this.color = 'subTigo'; }
+    else if(this.permiso === 'panel'){
+      this.ser.setColor();
+      this.header = this.ser.theme.head;
+      this.color = this.ser.theme.col;
+   }
   }
 
   limpiar(){ this.result = ''; }

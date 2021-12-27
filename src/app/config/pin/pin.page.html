@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar [color]="header">
+    <ion-back-button slot="start" defaultHref="/config"></ion-back-button>
+  
+    <ion-title>Configuración de pin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [color]="color">
+  <div class="h-75">
+    <ion-grid class="d-flex align-items-center justify-content-center h-100">
+      <ion-row>
+        <ion-col size="12" class="w-100">
+          <h3 class="d-flex justify-content-center align-items-center titulo"><span>🔑 </span> Cambiar pin</h3>
+          <ion-item>
+            <ion-label position="floating">Nuevo PIN</ion-label>
+            <ion-input clearInput type="tel" [(ngModel)]="pinNew"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-button color="lightTigo" (click)="validarPin()" expand="full">Cambiar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+
+<ion-footer class="fixed-bottom ion-no-border">
+  <ion-toolbar [color]="header">
+    <h5 class="text-center">
+      <span>@PaolaHack</span>
+    </h5>
+  </ion-toolbar>
+</ion-footer>
